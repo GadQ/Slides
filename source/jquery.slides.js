@@ -10,11 +10,13 @@
       start: 1,
       navigation: {
         active: true,
-        effect: "slide"
+        effect: "slide",
+        pauseOnClick: true
       },
       pagination: {
         active: true,
-        effect: "slide"
+        effect: "slide",
+        pauseOnClick: true
       },
       play: {
         active: false,
@@ -129,12 +131,12 @@
       }
       $(".slidesjs-next", $element).click(function(e) {
         e.preventDefault();
-        _this.stop(true);
+        _this.stop( this.options.navigation.pauseOnClick );
         return _this.next(_this.options.navigation.effect);
       });
       $(".slidesjs-previous", $element).click(function(e) {
         e.preventDefault();
-        _this.stop(true);
+        _this.stop( this.options.navigation.pauseOnClick );
         return _this.previous(_this.options.navigation.effect);
       });
       if (this.options.play.active) {
@@ -180,7 +182,7 @@
           }).appendTo(paginationItem);
           return paginationLink.click(function(e) {
             e.preventDefault();
-            _this.stop(true);
+            _this.stop( this.options.pagination.pauseOnClick );
             return _this.goto(($(e.currentTarget).attr("data-slidesjs-item") * 1) + 1);
           });
         });
